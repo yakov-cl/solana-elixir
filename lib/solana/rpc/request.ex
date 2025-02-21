@@ -86,10 +86,24 @@ defmodule Solana.RPC.Request do
   For more information, see [the Solana
   docs](https://docs.solana.com/developing/clients/jsonrpc-api#getrecentblockhash).
   """
+  @deprecated "use get_latest_blockhash/1"
   @spec get_recent_blockhash(opts :: keyword) :: t
   def get_recent_blockhash(opts \\ []) do
     {"getRecentBlockhash", [encode_opts(opts)]}
   end
+
+  @doc """
+  Returns a recent block hash from the ledger, and a fee schedule that can be
+  used to compute the cost of submitting a transaction using it.
+
+  For more information, see [the Solana
+  docs](https://solana.com/docs/rpc/http/getlatestblockhash).
+  """
+  @spec get_latest_blockhash(opts :: keyword) :: t
+  def get_latest_blockhash(opts \\ []) do
+    {"getLatestBlockhash", [encode_opts(opts)]}
+  end
+
 
   @doc """
   Returns minimum balance required to make an account rent exempt.
